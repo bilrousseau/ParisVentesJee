@@ -31,8 +31,7 @@ public class Login extends HttpServlet {
 		session.setAttribute("isUserLogged", true);
 		//		Cookie passwordCookie = new Cookie("usrPassword", request.getParameter("password"));
 		
-		
-		doGet(request, response);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
 
 }

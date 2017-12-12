@@ -25,9 +25,8 @@
 	</p>
 </form>
 
-<div>
-	<p>${emailCookie}</p>
-	<p>${passwordCookie}</p>
-</div>
+<c:if test="${sessionScope.isUserLogged}">
+	<c:redirect url="/home"></c:redirect>
+</c:if>
 
 <%@ include file="layouts/footer.jsp" %>
