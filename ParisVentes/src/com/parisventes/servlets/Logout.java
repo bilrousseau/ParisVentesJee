@@ -8,30 +8,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public Login() {
+    public Logout() {
         super();
     }
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		session.setAttribute("isUserLogged", false);
+		session.setAttribute("userName", null);
+		session.setAttribute("userPassword", null);
+		//session.invalidate();
+		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/logout.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession(true);
-		session.setAttribute("userName", request.getParameter("username"));
-		session.setAttribute("userPassword", request.getParameter("password"));
-		
-		session.setAttribute("isUserLogged", true);
-		//		Cookie passwordCookie = new Cookie("usrPassword", request.getParameter("password"));
-		
-		
 		doGet(request, response);
 	}
 

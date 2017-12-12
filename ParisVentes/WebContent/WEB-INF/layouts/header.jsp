@@ -14,9 +14,21 @@
 				<div class="container-fluid">
 					<ul class="nav navbar-nav">
 						<li><a href="${pageContext.request.contextPath}/home">Accueil</a></li>
-						<li><a href="<c:url value="/login"></c:url>">Se connecter</a></li>
+						<c:choose>
+							<c:when test="${sessionScope.isUserLogged}">
+								<li>
+									<a href="<c:url value="/logout"></c:url>">Se déconnecter</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li>
+									<a href="<c:url value="/login" />">Se connecter</a>
+								</li>
+							</c:otherwise>
+						</c:choose>
 						<li><a href="#contact">Contact</a></li>
 						<li><a href="#formulaire">Formulaire</a></li>
+						<li class="greeting"><a>Bienvenue <c:out value="${sessionScope.userName}" default="Invité"></c:out></a></li>
 					</ul>	
 				</div>
 			</nav>
