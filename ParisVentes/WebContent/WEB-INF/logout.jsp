@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%@ include file="layouts/header.jsp"%>
-
 	<c:redirect url="/home" /> 
 	
 <%@ include file="layouts/footer.jsp"%>

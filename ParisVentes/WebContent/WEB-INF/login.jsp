@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,8 +16,12 @@
 		<input type="text" name="username">
 	</p>
 	<p>	
+		<label>E-mail :</label>
+		<input type="email" name="email">
+	</p>
+	<p>	
 		<label>Mot de passe :</label>
-		<input type="password" name="password">
+		<input class="<c:out value="${errorPwdClass}" />" type="password" name="password">
 	</p>
 	<p>
 		<input type="submit" value="Se connecter">

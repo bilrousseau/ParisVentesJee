@@ -47,8 +47,6 @@ public class Articles {
     }
 	
     public static Articles getById(Integer id) {
-		ArrayList<Articles> articleList = new ArrayList<Articles>();
-		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(DB.FILENAME));
 			
@@ -56,26 +54,18 @@ public class Articles {
 				String[] lineArr = br.readLine().split(";");
 				Integer tabId = 0;
 				
-				try {
-					tabId = Integer.parseInt(lineArr[0]);
-				} catch (NumberFormatException e) {
-					System.out.println(e.getMessage());
-				}
+				tabId = Integer.parseInt(lineArr[0]);
 				if (tabId == id) {
-					addToList(articleList, lineArr);
-					break ;
+					return new Articles(Integer.parseInt(lineArr[0]), lineArr[1], lineArr[2], lineArr[3], Float.parseFloat(lineArr[4])); 
 				}
-			}
-			br.close();
-			if (!articleList.isEmpty()) {
-				return articleList.get(0);
-			} else {
-				return null;
+				br.close();
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			System.out.println(e.getMessage());
 		}
 		return null;
 	}

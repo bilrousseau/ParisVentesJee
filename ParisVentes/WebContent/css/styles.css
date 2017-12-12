@@ -13,3 +13,17 @@ body {
 header .navbar .greeting {
 /* 	float: right; */
 }
+
+input.error {
+	background: darkred;	
+}
+
+input.error
+::after {
+	content: "Mot de passe invalide."
+}
+
+span.user-email {
+	font-size: 80%;
+	font-style: italic;
+}

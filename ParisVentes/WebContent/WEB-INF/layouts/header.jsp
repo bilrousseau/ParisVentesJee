@@ -28,7 +28,10 @@
 						</c:choose>
 						<li><a href="#contact">Contact</a></li>
 						<li><a href="#formulaire">Formulaire</a></li>
-						<li class="greeting"><a>Bienvenue <c:out value="${sessionScope.userName}" default="Invité"></c:out></a></li>
+						<li class="greeting"><a>Bienvenue <c:out value="${sessionScope.userName}" default="Invité" /></a></li>
+						<c:if test="${sessionScope.isUserLogged}">
+							<li><a><span class="user-email"><c:out value="${sessionScope.userEmail}" /></span></a></li>
+						</c:if>
 					</ul>	
 				</div>
 			</nav>

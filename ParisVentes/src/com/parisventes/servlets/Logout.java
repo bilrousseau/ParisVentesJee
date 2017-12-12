@@ -1,6 +1,8 @@
 package com.parisventes.servlets;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +25,7 @@ public class Logout extends HttpServlet {
 		session.setAttribute("userName", null);
 		session.setAttribute("userPassword", null);
 		//session.invalidate();
-		
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/logout.jsp").forward(request, response);
 	}
 

@@ -24,12 +24,19 @@ public class Login extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String username = request.getParameter("username");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
 		HttpSession session = request.getSession(true);
-		session.setAttribute("userName", request.getParameter("username"));
-		session.setAttribute("userPassword", request.getParameter("password"));
 		
-		session.setAttribute("isUserLogged", true);
-		//		Cookie passwordCookie = new Cookie("usrPassword", request.getParameter("password"));
+		if (password.equals("123456")) {
+			session.setAttribute("userName", username);
+			session.setAttribute("userEmail", email);
+			session.setAttribute("userPassword", password);
+			session.setAttribute("isUserLogged", true);
+		} else {
+			request.setAttribute("errorPwdClass", "error");
+		}
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
