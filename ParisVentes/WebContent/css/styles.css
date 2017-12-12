@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#home-section img {
+	width: 100px;
+	height: 100px;
+}
+
+body {
+	padding-left: 20px;
+	padding-right: 20px;
+}
