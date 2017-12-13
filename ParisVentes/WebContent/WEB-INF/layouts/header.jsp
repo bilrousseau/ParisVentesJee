@@ -19,6 +19,10 @@
 								<li>
 									<a href="<c:url value="/logout"></c:url>">Se déconnecter</a>
 								</li>
+								
+								<li>
+									<a href="<c:url value="/searchuser" />">Rechercher un utilisateur</a>
+								</li>
 							</c:when>
 							<c:otherwise>
 								<li>

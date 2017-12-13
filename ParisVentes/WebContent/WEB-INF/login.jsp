@@ -10,7 +10,7 @@
 
 <%@ include file="layouts/header.jsp" %>
 
-<form name="loginForm" action="" method="POST">
+<form name="loginForm" method="POST">
 	<p>	
 		<label>Login :</label>
 		<input type="text" name="username">

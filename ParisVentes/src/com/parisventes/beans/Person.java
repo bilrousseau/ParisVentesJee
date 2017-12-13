@@ -59,14 +59,15 @@ public class Person {
 				String[] lineArr = br.readLine().split(";");
 				
 				if (lineArr[3].equals(email)) {
+					br.close();
 					return new Person(Integer.parseInt(lineArr[0]), lineArr[1], lineArr[2], lineArr[3], lineArr[4], lineArr[5]); 
 				}
-				br.close();
 			}
+			br.close();
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());		
 		} catch (NumberFormatException e) {
 			System.out.println(e.getMessage());
 		}
