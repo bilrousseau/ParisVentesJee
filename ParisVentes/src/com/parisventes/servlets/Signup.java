@@ -1,6 +1,7 @@
 package com.parisventes.servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.parisventes.beans.DB;
 import com.parisventes.beans.Person;
 
-@WebServlet("/Signup")
+@WebServlet("/signup")
 public class Signup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,17 +28,33 @@ public class Signup extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String[]> params = request.getParameterMap();
 		
-		if (this.validate(params)) {
+		Map<String, String> signupErrors = this.getErrors(params);
+		if (signupErrors.isEmpty()) {
 			Person newUser = new Person(params.get("firstname")[0], params.get("lastname")[0], params.get("email")[0], params.get("phone")[0], params.get("password")[0]);
 			newUser.setId(DB.getLinesNb(DB.PERSON_FILENAME) + 1);
 			newUser.register();
 		}
+		request.setAttribute("signupErrors", signupErrors);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/signup.jsp").forward(request, response);
 	}
 	
-	private Boolean validate(Map<String, String[]> params) {
-		return true;
+	private Map<String, String> getErrors(Map<String, String[]> params) {
+		HashMap<String, String> errorMap = new HashMap<String, String>();
+		if (params.get("firstname")[0].length() < 2) {
+			errorMap.put("errorFirstname", "Veuillez renseigner le prénom (min. 3 lettres)");
+		} else if (params.get("firstname")[0].matches("[a-zA-Z]+\\.?")) {
+			errorMap.put("errorFirstname", "Le prénom ne peut contenir que des lettres");
+		} else if (params.get("lastname")[0].length() < 2) {
+			errorMap.put("errorLastname", "Veuillez renseigner le nom (min. 3 lettres)");
+		} else if (params.get("lastname")[0].matches("[a-zA-Z]+\\.?")) {
+			errorMap.put("errorLastname", "Le nom ne peut contenir que des lettres");
+		} else if (params.get("password")[0].equals(params.get("passwordRepeat")[0])) {
+			errorMap.put("errorPassword", "Le mot de passe ne correspond pas");
+		}
+		//TODO: optimiser cette gestion d'erreurs pour l'e-mail et le phone
+		
+		return errorMap;
 	}
 
 }

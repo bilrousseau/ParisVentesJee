@@ -14,26 +14,32 @@
 	<p>
 		<label>Prénom :</label>
 		<input type="text" name="firstname">
+		<span class="error"><c:out value="${signupErrors.errorFirstname}" /></span>
 	</p>
 	<p>
 		<label>Nom :</label>
 		<input type="text" name="lastname">
+		<span class="error"><c:out value="${signupErrors.errorLastname}" /></span>
 	</p>
 	<p>
 		<label>Adresse e-mail :</label>
 		<input type="email" name="email">
+		<span class="error"><c:out value="${signupErrors.errorEmail}" /></span>
 	</p>
 	<p>
 		<label>Numéro de téléphone :</label>
 		<input type="tel" name="phone">
+		<span class="error"><c:out value="${signupErrors.errorPhone}" /></span>
 	</p>
 	<p>
 		<label>Mot de passe :</label>
 		<input type="password" name="password">
+		<span class="error"><c:out value="${signupErrors.errorPassword}" /></span>	
 	</p>
 	<p>
 		<label>Confirmer le mot de passe :</label>
-		<input type="password" name="passwordRepeat">
+		<input type="password" name="passwordRepeat">		
+		<span class="error"><c:out value="${signupErrors.errorPassword}" /></span>	
 	</p>
 	<p>
 		<input type="submit" value="Confirmer">

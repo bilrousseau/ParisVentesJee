@@ -25,8 +25,6 @@ public class Login extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String username = request.getParameter("username");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession(true);
@@ -34,9 +32,7 @@ public class Login extends HttpServlet {
 		Person user = Person.getByEmail(email);
 		if (user != null) {
 			if (user.getPassword().equals(password)) {
-				session.setAttribute("userName", username);
-				session.setAttribute("userEmail", email);
-				session.setAttribute("userPassword", password);
+				session.setAttribute("user", user);
 				session.setAttribute("isUserLogged", true);
 				this.clearAllErrors(session);
 			} else {

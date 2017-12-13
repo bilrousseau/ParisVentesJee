@@ -71,7 +71,7 @@ public class Person {
 			while (br.ready()) {
 				String[] lineArr = br.readLine().split(";");
 				
-				if (lineArr[3].equals(email)) {
+				if (lineArr[3].toLowerCase().equals(email.toLowerCase())) {
 					br.close();
 					return new Person(Integer.parseInt(lineArr[0]), lineArr[1], lineArr[2], lineArr[3], lineArr[4], lineArr[5]); 
 				}
