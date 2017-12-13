@@ -28,6 +28,9 @@
 								<li>
 									<a href="<c:url value="/login" />">Se connecter</a>
 								</li>
+								<li>
+									<a href="<c:url value="/signup" />">S'enregistrer</a>
+								</li>
 							</c:otherwise>
 						</c:choose>
 						<li><a href="#contact">Contact</a></li>

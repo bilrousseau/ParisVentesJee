@@ -25,7 +25,6 @@ public class SearchUser extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userEmail = request.getParameter("userEmail");
-		System.out.println(userEmail);
 		Person userFound = Person.getByEmail(userEmail);
 		request.setAttribute("userFound", userFound);
 		request.setAttribute("userEmail", userEmail);

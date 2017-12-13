@@ -1,8 +1,10 @@
 package com.parisventes.beans;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,6 +20,17 @@ public class Person {
 		super();
 	}
 	
+	
+	public Person(String firstname, String lastname, String email, String phone, String password) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.phone = phone;
+		this.password = password;
+	}
+
+
 	public Person(Integer id, String firstname, String lastname, String email, String phone, String password) {
 		this.id = id;
 		this.firstname = firstname;
@@ -74,6 +87,18 @@ public class Person {
 		return null;
 	}
 	
+	public void register() {
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(DB.PERSON_FILENAME, true));
+			
+			bw.newLine();
+			bw.write(this.toString());
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -113,5 +138,7 @@ public class Person {
 		this.password = password;
 	}
 	
-	
+	public String toString() {
+		return this.getId()+";"+this.getFirstname()+";"+this.getLastname()+";"+this.getEmail()+";"+this.getPhone()+";"+this.getPassword();
+	}
 }
