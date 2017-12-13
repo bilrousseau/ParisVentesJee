@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.parisventes.beans.DB;
 import com.parisventes.beans.Person;
 
-@WebServlet("/signup")
 public class Signup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

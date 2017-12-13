@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.parisventes.beans.Articles;
 
-@WebServlet("/home")
 public class Home extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

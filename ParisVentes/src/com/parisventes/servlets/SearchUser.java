@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.parisventes.beans.Person;
 
-@WebServlet("/searchuser")
 public class SearchUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

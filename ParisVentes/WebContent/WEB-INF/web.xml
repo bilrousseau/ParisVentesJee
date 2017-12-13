@@ -9,4 +9,97 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>Article</display-name>
+    <servlet-name>Article</servlet-name>
+    <servlet-class>com.parisventes.servlets.Article</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>Home</display-name>
+    <servlet-name>Home</servlet-name>
+    <servlet-class>com.parisventes.servlets.Home</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>Login</display-name>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.parisventes.servlets.Login</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>Logout</display-name>
+    <servlet-name>Logout</servlet-name>
+    <servlet-class>com.parisventes.servlets.Logout</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>LostPassword</display-name>
+    <servlet-name>LostPassword</servlet-name>
+    <servlet-class>com.parisventes.servlets.LostPassword</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>SearchUser</display-name>
+    <servlet-name>SearchUser</servlet-name>
+    <servlet-class>com.parisventes.servlets.SearchUser</servlet-class>
+  </servlet>
+  <servlet>
+    <description></description>
+    <display-name>Signup</display-name>
+    <servlet-name>Signup</servlet-name>
+    <servlet-class>com.parisventes.servlets.Signup</servlet-class>
+  </servlet>
+<!--   <servlet> -->
+<!--     <description></description> -->
+<!--     <display-name>RestrictSrv</display-name> -->
+<!--     <servlet-name>RestrictSrv</servlet-name> -->
+<!--     <servlet-class>com.parisventes.servlets.RestrictSrv</servlet-class> -->
+<!--   </servlet> -->
+  
+  <filter>
+  	<filter-name>Restriction</filter-name>
+  	<filter-class>com.parisventes.filter.Restriction</filter-class>
+  	<init-param>
+  		<param-name>test-param</param-name>
+  		<param-value>Test du filtre</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>Restriction</filter-name>
+  	<url-pattern>/restricted/*</url-pattern>
+  </filter-mapping>
+  <servlet-mapping>
+    <servlet-name>Article</servlet-name>
+    <url-pattern>/article</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Home</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LostPassword</servlet-name>
+    <url-pattern>/lostpassword</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SearchUser</servlet-name>
+    <url-pattern>/searchuser</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Signup</servlet-name>
+    <url-pattern>/signup</url-pattern>
+  </servlet-mapping>
+<!--   <servlet-mapping> -->
+<!--     <servlet-name>RestrictSrv</servlet-name> -->
+<!--     <url-pattern>/restrictsrv</url-pattern> -->
+<!--   </servlet-mapping> -->
 </web-app>

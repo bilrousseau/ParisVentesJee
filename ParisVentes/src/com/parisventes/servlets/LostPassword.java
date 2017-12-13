@@ -21,7 +21,6 @@ import javax.mail.internet.MimeMessage;
 import com.parisventes.beans.Person;
 
 
-@WebServlet("/lostpassword")
 public class LostPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -38,16 +37,27 @@ public class LostPassword extends HttpServlet {
 		
 		Person user = Person.getByEmail(email);
 		if (user != null) {
+			
+			String from = "billcaneg2l2@gmail.com";
+		    final String username = "billcaneg2l2@gmail.com";//change accordingly
+		    final String password = "esigetel";//change accordingly
+		      
+		      
 			Properties props = new Properties();
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.starttls.enable", "true");
 			props.put("mail.smtp.host", "smtp.gmail.com");
 			props.put("mail.smtp.port", "587");
 			
-			Session session = Session.getInstance(props);
+			Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+	            protected PasswordAuthentication getPasswordAuthentication() {
+	                return new PasswordAuthentication(username, password);
+	             }
+			});
+			
 			try {
 				Message message = new MimeMessage(session);
-				message.setFrom(new InternetAddress("postmaster@parisventes.com"));
+				message.setFrom(new InternetAddress(from));
 				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 				message.setSubject("ParisVentes - Mot de passe oublié");
 				message.setText("Bonjour, \n Vous avez cliqué sur le bouton \"Mot de passe oublié\".\n Voici votre mot de passe :\n\n"+user.getPassword());
