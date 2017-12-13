@@ -23,7 +23,7 @@
 	</p>
 	<p>
 		<label>Adresse e-mail :</label>
-		<input type="email" name="email">
+		<input type="text" name="email">
 		<span class="error"><c:out value="${signupErrors.errorEmail}" /></span>
 	</p>
 	<p>

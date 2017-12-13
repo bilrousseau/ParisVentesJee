@@ -43,16 +43,32 @@ public class Signup extends HttpServlet {
 		HashMap<String, String> errorMap = new HashMap<String, String>();
 		if (params.get("firstname")[0].length() < 2) {
 			errorMap.put("errorFirstname", "Veuillez renseigner le prénom (min. 3 lettres)");
-		} else if (params.get("firstname")[0].matches("[a-zA-Z]+\\.?")) {
+		} 
+		else if (!params.get("firstname")[0].matches("[a-zA-Z]+\\.?")) {
 			errorMap.put("errorFirstname", "Le prénom ne peut contenir que des lettres");
-		} else if (params.get("lastname")[0].length() < 2) {
+		} 
+		else if (params.get("lastname")[0].length() < 2) {
 			errorMap.put("errorLastname", "Veuillez renseigner le nom (min. 3 lettres)");
-		} else if (params.get("lastname")[0].matches("[a-zA-Z]+\\.?")) {
+		} 
+		else if (!params.get("lastname")[0].matches("[a-zA-Z]+\\.?")) {
 			errorMap.put("errorLastname", "Le nom ne peut contenir que des lettres");
-		} else if (params.get("password")[0].equals(params.get("passwordRepeat")[0])) {
-			errorMap.put("errorPassword", "Le mot de passe ne correspond pas");
+		} 
+		else if (params.get("email")[0].length() < 2) {
+			errorMap.put("errorEmail", "Veuillez renseigner l'e-mail");
 		}
-		//TODO: optimiser cette gestion d'erreurs pour l'e-mail et le phone
+		else if (!(params.get("email")[0].matches(DB.EMAIL_REGEXP))) {
+			errorMap.put("errorEmail", "Adresse e-mail invalide");
+		} 
+		else if (params.get("phone")[0].length() < 2) {
+			errorMap.put("errorPhone", "Veuillez renseigner le numéro de téléphone");
+		} 
+		else if (params.get("password")[0].length() < 2 || params.get("passwordRepeat")[0].length() < 2) {
+			errorMap.put("errorPassword", "Veuillez renseigner le mot de passe");
+		} 
+		else if (!params.get("password")[0].equals(params.get("passwordRepeat")[0])) {
+			errorMap.put("errorPassword", "Les deux mots de passe ne correspondent pas");
+		}
+		//TODO: optimiser cette gestion d'erreurs pour le phone
 		
 		return errorMap;
 	}

@@ -36,12 +36,10 @@ public class Login extends HttpServlet {
 				session.setAttribute("isUserLogged", true);
 				this.clearAllErrors(session);
 			} else {
-				request.setAttribute("errorPwdClass", "error");
-				request.setAttribute("errorPwd", "Mot de passe invalide pour cet utilisateur.");
+				request.setAttribute("error", "Le couple identifiant / mot de passe entré n'est pas valide ou n'existe pas.");
 			}
 		} else {
-			request.setAttribute("errorEmailClass", "error");
-			request.setAttribute("errorEmail", "Pas d'utilisateur existant pour cet e-mail.");
+			request.setAttribute("error", "Le couple identifiant / mot de passe entré n'est pas valide ou n'existe pas.");
 		}
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);

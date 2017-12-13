@@ -35,7 +35,18 @@
 						</c:choose>
 						<li><a href="#contact">Contact</a></li>
 						<li><a href="#formulaire">Formulaire</a></li>
-						<li class="greeting"><a>Bienvenue <c:out value="${sessionScope.user.firstName}" default="${sessionScope.user.email}" /></a></li>
+						<li class="greeting">
+							<a>
+								<c:choose>
+									<c:when test="${sessionScope.isUserLogged}">
+										Bienvenue <c:out value="${sessionScope.user.firstname}"></c:out>
+									</c:when>
+									<c:otherwise>
+										Invité
+									</c:otherwise>
+								</c:choose>
+							</a>
+						</li>
 						<c:if test="${sessionScope.isUserLogged}">
 							<li><a><span class="user-email"><c:out value="${sessionScope.userEmail}" /></span></a></li>
 						</c:if>
