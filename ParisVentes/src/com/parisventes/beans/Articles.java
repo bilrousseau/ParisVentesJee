@@ -31,7 +31,7 @@ public class Articles {
 		ArrayList<Articles> articleList = new ArrayList<Articles>();
 		
 		try {
-			br = new BufferedReader(new FileReader(DB.FILENAME));
+			br = new BufferedReader(new FileReader(DB.ARTICLES_FILENAME));
 			
 			while (br.ready()) {
 				addToList(articleList, br.readLine().split(";"));
@@ -48,7 +48,7 @@ public class Articles {
 	
     public static Articles getById(Integer id) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(DB.FILENAME));
+			BufferedReader br = new BufferedReader(new FileReader(DB.ARTICLES_FILENAME));
 			
 			while (br.ready()) {
 				String[] lineArr = br.readLine().split(";");

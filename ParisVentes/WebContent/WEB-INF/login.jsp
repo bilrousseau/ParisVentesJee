@@ -17,11 +17,13 @@
 	</p>
 	<p>	
 		<label>E-mail :</label>
-		<input type="email" name="email">
+		<input type="email" class="<c:out value="${errorEmailClass}" />" name="email">
+		<span class="error"><c:out value="${errorEmail}" /></span>
 	</p>
 	<p>	
 		<label>Mot de passe :</label>
 		<input class="<c:out value="${errorPwdClass}" />" type="password" name="password">
+		<span class="error"><c:out value="${errorPwd}" /></span>
 	</p>
 	<p>
 		<input type="submit" value="Se connecter">

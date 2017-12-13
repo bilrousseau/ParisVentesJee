@@ -1,0 +1,4 @@
+1;Bill;Rousseau;bill.rousseau@outlook.com;0648665915;+CvmA+e5
+2;Ludovic;Sansone;ludovic.sansone@me.com;0663470287;Xavierniel42
+3;Gwendoline;Kervran;gwendoline.kervran@gmail.com;0608740085;yarouff
+4;Edwige;Renouard;edwige.renouard26@gmail.com;0615431939;Samir123

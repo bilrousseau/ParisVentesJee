@@ -1,7 +1,6 @@
 package com.parisventes.servlets;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,10 +20,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		session.setAttribute("isUserLogged", false);
-		session.setAttribute("userName", null);
-		session.setAttribute("userPassword", null);
-		//session.invalidate();
+		session.invalidate();
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/logout.jsp").forward(request, response);
 	}
