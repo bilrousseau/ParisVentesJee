@@ -16,9 +16,9 @@
       <s:textfield name="personBean.email"  label ="Email"/>  
       <s:textfield name="personBean.phone"  label="Phone number"  />
       <s:password name="personBean.password"  label="Password"  />
+      <s:password name="passwordRepeat"  label="Confirm password"  />
       <s:submit/>
     </s:form>
     
-    <p><s:property value="personBean"/></p>
   </body>
 </html>
