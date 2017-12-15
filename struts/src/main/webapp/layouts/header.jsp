@@ -8,14 +8,14 @@
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 					<ul class="nav navbar-nav">
-						<li><a href="index.jsp">Accueil</a></li>
+						<li><a href="<s:url action="index" />">Accueil</a></li>
 						<s:if test="#session.isUserLogged">
 							<li>
 								<a href="<s:url action="logout" />">Se déconnecter</a>
 							</li>
 							
 							<li>
-								<a href="<s:url action="searchuser" />">Rechercher un utilisateur</a>
+								<a href="<s:url action="searchUserInput" />">Rechercher un utilisateur</a>
 							</li>
 						</s:if>
 						<s:else>

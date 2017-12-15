@@ -25,12 +25,14 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	}
 
 	public void validate() {
-		Person userFound = Person.findByEmail(this.personBean.getEmail());
-		
-		if (userFound == null) {
-			addFieldError("personBean.email", "Pas d'utilisateur pour cet e-mail");
-		} else if (!userFound.getPassword().equals(this.personBean.getPassword())) {
-			addFieldError("personBean.password", "Mot de passe invalide");
+		if (!this.session.containsKey("user")) {
+			Person userFound = Person.findByEmail(this.personBean.getEmail());
+			
+			if (userFound == null) {
+				addFieldError("personBean.email", "Pas d'utilisateur pour cet e-mail");
+			} else if (!userFound.getPassword().equals(this.personBean.getPassword())) {
+				addFieldError("personBean.password", "Mot de passe invalide");
+			}
 		}
 	}
 	

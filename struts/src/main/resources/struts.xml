@@ -40,6 +40,14 @@
         		<param name="id">{1}</param>
         		<result>/article.jsp</result>
         </action>
+        
+        <action name="searchUser" class="com.parisventes.searchuser.action.SearchUserAction" method="execute">
+        		<result name="success">/searchuser.jsp</result>
+        </action>
+        
+        <action name="searchUserInput" class="com.parisventes.searchuser.action.SearchUserAction" method="input">
+        		<result name="input">/searchuser.jsp</result>
+        </action>
     </package>
 
 </struts>
