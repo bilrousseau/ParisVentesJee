@@ -6,9 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class DB {
-//	public static final String ARTICLES_FILENAME = "C:\\Users\\Administrateur\\Desktop\\Formation_POEI\\13_ParisVentes\\struts\\src\\main\\webapp\\articles.txt";
-//	public static final String PERSON_FILENAME ="C:\\Users\\Administrateur\\Desktop\\Formation_POEI\\13_ParisVentes\\struts\\src\\main\\webapp\\personnes.txt";
-//  Sur le PC
 	
 	public static final String ARTICLES_FILENAME = "/Users/billrouseeau/ParisVentesJee/struts/src/main/webapp/db/articles.txt";
 	public static final String PERSON_FILENAME = "/Users/billrouseeau/ParisVentesJee/struts/src/main/webapp/db/personnes.txt";
