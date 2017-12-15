@@ -47,8 +47,10 @@ public class Articles {
     }
 	
     public static Articles getById(Integer id) {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(DB.ARTICLES_FILENAME));
+		BufferedReader br;
+		
+    		try {
+			br = new BufferedReader(new FileReader(DB.ARTICLES_FILENAME));
 			
 			while (br.ready()) {
 				String[] lineArr = br.readLine().split(";");
@@ -56,16 +58,17 @@ public class Articles {
 				
 				tabId = Integer.parseInt(lineArr[0]);
 				if (tabId == id) {
+					br.close();
 					return new Articles(Integer.parseInt(lineArr[0]), lineArr[1], lineArr[2], lineArr[3], Float.parseFloat(lineArr[4])); 
 				}
-				br.close();
 			}
+			br.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return null;
 	}

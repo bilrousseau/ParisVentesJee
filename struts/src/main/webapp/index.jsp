@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <jsp:include page="layouts/head.jsp">
@@ -14,7 +13,7 @@
 		<s:if test="#session.isUserLogged">
 			<s:if test="%{articleList.isEmpty()}">
 						Aucun article.
-					</s:if>
+			</s:if>
 			<s:else>
 				<table id="home-section" class="table table-striped">
 					<tr>
@@ -31,11 +30,12 @@
 									<s:property value="title" />
 								</h3>
 							</th>
-							<th><s:set var="articleId" value="id"></s:set> <s:set
-									var="articleLinkImg" value="linkImg"></s:set>
+							<th>
+								<s:set var="articleId" value="id"></s:set> 
+								<s:set var="articleLinkImg" value="linkImg"></s:set>
 								<figure>
 									<a
-										href="<s:url value="/article"><s:param name="id" value="#articleId"/></s:url>">
+										href="<s:url action="article/%{#articleId}" />">
 										<img style="width: 100px; height: 100px"
 										src="<s:url value="img/%{#articleLinkImg}" />"
 										alt="<s:property value="description" />">

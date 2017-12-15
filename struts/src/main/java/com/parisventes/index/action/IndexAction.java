@@ -9,9 +9,11 @@ public class IndexAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Articles> articleList;
+	private Articles testArticle;
 	
 	public String execute() {
 		this.setArticleList(Articles.getAll());
+
 		return SUCCESS;
 	}
 
@@ -30,6 +32,16 @@ public class IndexAction extends ActionSupport {
 	public void setArticleList(ArrayList<Articles> articleList) {
 		this.articleList = articleList;
 	}
+
+	public Articles getTestArticle() {
+		return testArticle;
+	}
+
+	public void setTestArticle(Articles testArticle) {
+		this.testArticle = testArticle;
+	}
+
+	
 	
 	
 }
