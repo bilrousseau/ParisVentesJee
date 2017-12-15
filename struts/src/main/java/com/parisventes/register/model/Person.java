@@ -66,7 +66,7 @@ public class Person {
 		return personList;
 	}
 	
-	public Person getByEmail(String email) {
+	public static Person findByEmail(String email) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(DB.PERSON_FILENAME));
 			
