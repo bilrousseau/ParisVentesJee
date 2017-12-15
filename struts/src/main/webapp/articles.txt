@@ -1,0 +1,4 @@
+1;article1;pied_de_micro.jpg;Pied de micro Thomann;20
+2;article2;balai_brosse.jpg;Balai brosse;10
+3;article3;stupeflip_hypnoflip_invasion.jpg;Album "Hypnoflip Invasion" de Stupeflip;9
+4;article4;chaussures.jpg;Paire de chaussures taille 43 "In Extenso";14

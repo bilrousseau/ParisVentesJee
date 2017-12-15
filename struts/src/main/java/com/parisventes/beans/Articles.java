@@ -117,6 +117,12 @@ public class Articles {
 	public void setPrice(Float price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "Articles [id=" + id + ", title=" + title + ", linkImg=" + linkImg + ", description=" + description
+				+ ", price=" + price + "]";
+	}
 	
 	
 	
