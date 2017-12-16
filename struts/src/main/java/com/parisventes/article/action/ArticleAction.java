@@ -9,6 +9,7 @@ public class ArticleAction extends ActionSupport {
 	
 	private Articles articleBean;
 	private Integer id;
+	// L'id est récupéré depuis l'url : voir dans struts.xml pour comment faire
 	
 	public String execute() {
 		this.setArticleBean(Articles.getById(this.getId()));

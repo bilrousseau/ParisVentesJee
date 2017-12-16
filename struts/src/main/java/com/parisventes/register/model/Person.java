@@ -92,8 +92,9 @@ public class Person {
 	public void register() {
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(DB.PERSON_FILENAME, true));
-			
-			bw.newLine();
+			if (DB.getLinesNb(DB.PERSON_FILENAME) > 0) {
+				bw.newLine();
+			}
 			bw.write(this.toString());
 			bw.close();
 		} catch (IOException e) {

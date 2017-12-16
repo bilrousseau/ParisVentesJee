@@ -27,13 +27,13 @@
 							</li>
 						</s:else>
 
-						<li><a href="<s:url action="contact" />">Contact</a></li>
-						<li><a href="<s:url action="form" />">Formulaire</a></li>
+<%-- 						<li><a href="<s:url action="contact" />">Contact</a></li> --%>
+<%-- 						<li><a href="<s:url action="form" />">Formulaire</a></li> --%>
 						<li class="greeting">
 							<a>
 							
 								<s:if test="#session.isUserLogged">
-									Bienvenue <s:property value="#user.firstname"/>
+									Bienvenue, <s:property value="session.user.firstname"/>
 								</s:if>
 								<s:else>
 									Invité
@@ -41,11 +41,8 @@
 							</a>
 						</li>
 						<s:if test="#session.isUserLogged">
-							<li><a><span class="user-email"><c:out value="${sessionScope.userEmail}" /></span></a></li>
+							<li><a><span class="user-email"><s:property value="session.user.email"/></span></a></li>
 						</s:if>
-						<c:if test="${sessionScope.isUserLogged}">
-							<li><a><span class="user-email"><c:out value="${sessionScope.userEmail}" /></span></a></li>
-						</c:if>
 					</ul>	
 				</div>
 			</nav>

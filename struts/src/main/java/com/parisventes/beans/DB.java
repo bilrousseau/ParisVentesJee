@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class DB {
 	
+	// Modifier ces deux attributs par l'emplacement absolu de vos deux fichiers articles.txt et personnes.txt
 	public static final String ARTICLES_FILENAME = "/Users/billrouseeau/ParisVentesJee/struts/src/main/webapp/db/articles.txt";
 	public static final String PERSON_FILENAME = "/Users/billrouseeau/ParisVentesJee/struts/src/main/webapp/db/personnes.txt";
 

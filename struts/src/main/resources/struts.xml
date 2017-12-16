@@ -8,7 +8,9 @@
     <constant name="struts.devMode" value="true" />
     <constant name="struts.enable.SlashesInActionNames" value="true"/>
 	<constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
-
+	<!-- Ces deux dernières constantes sont obligatoires pour les wildcards
+		et éventuellement si j'avais voulu mettre mes actions /article dans un namespace (cf. plus bas) -->
+	
     <package name="struts" extends="struts-default">
         <action name="index" class="com.parisventes.index.action.IndexAction" method="execute">
         		<result name="success">/index.jsp</result>
@@ -31,7 +33,10 @@
         <action name="loginInput" class="com.parisventes.login.action.LoginAction" method="input">
         		<result name="input">/login.jsp</result>
         </action>
-        
+        <!--  On sépare login de loginInput pour séparer la validation de l'entrée dans la vue
+        		(cf. le GoogleDoc de Samuel qui explique ça mieux que moi...
+        	 -->
+        	 
         <action name="logout" class="com.parisventes.login.action.LoginAction" method="logOut">
         		<result name="success" type="redirectAction">index</result>
         </action>
@@ -40,6 +45,7 @@
         		<param name="id">{1}</param>
         		<result>/article.jsp</result>
         </action>
+<!--    source : https://cwiki.apache.org/confluence/display/WW/Wildcard+Mappings -->
         
         <action name="searchUser" class="com.parisventes.searchuser.action.SearchUserAction" method="execute">
         		<result name="success">/searchuser.jsp</result>
