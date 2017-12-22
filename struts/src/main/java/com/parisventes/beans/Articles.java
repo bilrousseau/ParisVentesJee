@@ -1,9 +1,7 @@
 package com.parisventes.beans;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Articles {
@@ -27,64 +25,44 @@ public class Articles {
 	}
 	
 	public static ArrayList<Articles> getAll() {
-		BufferedReader br;
 		ArrayList<Articles> articleList = new ArrayList<Articles>();
-		
 		try {
-			br = new BufferedReader(new FileReader(DB.ARTICLES_FILENAME));
+			ResultSet resultSet = DB.executeSelect("SELECT * FROM articles");
 			
-			while (br.ready()) {
-				addToList(articleList, br.readLine().split(";"));
+			while (resultSet.next()) {
+				Articles a = new Articles();
+				a.fillFields(resultSet);
+				articleList.add(a);
 			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
 		
 		return articleList;
     }
 	
     public static Articles getById(Integer id) {
-		BufferedReader br;
-		
-    		try {
-			br = new BufferedReader(new FileReader(DB.ARTICLES_FILENAME));
+    	try {
+			ResultSet res = DB.executeSelect("SELECT * FROM articles WHERE art_id = "+DB.parseToSql(String.valueOf(id))+" ;");
 			
-			while (br.ready()) {
-				String[] lineArr = br.readLine().split(";");
-				Integer tabId = 0;
-				
-				tabId = Integer.parseInt(lineArr[0]);
-				if (tabId == id) {
-					br.close();
-					return new Articles(Integer.parseInt(lineArr[0]), lineArr[1], lineArr[2], lineArr[3], Float.parseFloat(lineArr[4])); 
-				}
+			if (res.next()) {
+				Articles a = new Articles();
+				a.fillFields(res);
+				return a;
 			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
-		return null;
+    	
+    	return null;
 	}
 	
-    // Modifier cette fonction lorsque la structure du fichier de données change
-    private static void addToList(ArrayList<Articles> articleList, String[] lineArr) {
-    	try {
-        	Integer articleId = Integer.parseInt(lineArr[0]);
-        	Float articlePrice = Float.parseFloat(lineArr[4]);
-        	articleList.add(
-        		new Articles(articleId, lineArr[1], lineArr[2], lineArr[3], articlePrice)
-        	);
-    	}
-    	catch (NumberFormatException e) {
-    		System.out.println(e.getMessage());
-    	}	
+    private void fillFields(ResultSet resultSet) throws SQLException {
+    	this.setId(resultSet.getInt("art_id"));
+    	this.setLinkImg(resultSet.getString("art_link_img"));
+		this.setDescription(resultSet.getString("art_description"));
+		this.setTitle(resultSet.getString("art_title"));
+		this.setPrice(resultSet.getFloat("art_price"));
     }
     
 	public Integer getId() {

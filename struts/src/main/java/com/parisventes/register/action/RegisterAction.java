@@ -11,7 +11,6 @@ public class RegisterAction extends ActionSupport {
 	private String passwordRepeat;
 	
 	public String execute() {
-		this.getPersonBean().setId(DB.getLinesNb(DB.PERSON_FILENAME) + 1);
 		this.getPersonBean().register();
 		return SUCCESS;
 	}

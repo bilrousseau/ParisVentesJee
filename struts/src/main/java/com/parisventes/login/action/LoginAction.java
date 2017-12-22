@@ -30,7 +30,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 
 	public void validate() {
 		if (!this.session.containsKey("user")) {
-			// Ce if pour ne pas que logOut ne lance un validate() (je n'ai pas trouvÃ© comment optimiser ce comportement)
+			// Ce if pour ne pas que logOut ne lance un validate() (je n'ai pas trouvé comment optimiser ce comportement)
 			
 			Person userFound = Person.findByEmail(this.personBean.getEmail());
 			

@@ -1,11 +1,7 @@
 package com.parisventes.register.model;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.parisventes.beans.DB;
@@ -44,62 +40,58 @@ public class Person {
 	
 	
 	public static ArrayList<Person> getAll() {
-		ArrayList<Person> personList = new ArrayList<Person>();
-		BufferedReader br = null;
 		
 		try {
-			br = new BufferedReader(new FileReader(DB.PERSON_FILENAME));
+			ArrayList<Person> personList = new ArrayList<Person>();
+			ResultSet res = DB.executeSelect("SELECT * FROM users");
 			
-			while (br.ready()) {
-				String[] lineArr = br.readLine().split(";");
-	        	personList.add(
-	        		new Person(Integer.parseInt(lineArr[0]), lineArr[1], lineArr[2], lineArr[3], lineArr[4], lineArr[5])
-	        	);
+			while (res.next()) {
+				personList.add(getPerson(res));
 			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+			res.close();
+			return personList;
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return personList;
-	}
-	
-	public static Person findByEmail(String email) {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(DB.PERSON_FILENAME));
-			
-			while (br.ready()) {
-				String[] lineArr = br.readLine().split(";");
-				
-				if (lineArr[3].toLowerCase().equals(email.toLowerCase())) {
-					br.close();
-					return new Person(Integer.parseInt(lineArr[0]), lineArr[1], lineArr[2], lineArr[3], lineArr[4], lineArr[5]); 
-				}
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch (IOException e) {
-			System.out.println(e.getMessage());		
-		} catch (NumberFormatException e) {
-			System.out.println(e.getMessage());
-		}
+		
 		return null;
 	}
 	
-	public void register() {
+	public static Person findByEmail(String email) {
+		
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(DB.PERSON_FILENAME, true));
-			if (DB.getLinesNb(DB.PERSON_FILENAME) > 0) {
-				bw.newLine();
+			ResultSet res = DB.executeSelect("SELECT * FROM users WHERE usr_email = "+ DB.parseToSql(email)+" ;");
+			if (res.next()) {
+				return getPerson(res);
 			}
-			bw.write(this.toString());
-			bw.close();
-		} catch (IOException e) {
+			res.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public Integer register() {
+		Integer linesInserted = 0;
+		String query = "INSERT INTO users (usr_firstname, usr_lastname, usr_email, usr_phone, usr_password) VALUES (";
+		query += DB.parseToSql(this.getFirstname()) + "," + DB.parseToSql(this.getLastname()) + "," + DB.parseToSql(this.getEmail()) + "," + DB.parseToSql(this.getPhone()) + "," + DB.parseToSql(this.getPassword()) + ");";
+		
+		try {
+			linesInserted = DB.executeInsert(query);
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
+
+		return linesInserted;
+
+	}
+	
+	private static Person getPerson(ResultSet res) throws SQLException {
+		return new Person(
+			res.getString("usr_firstname"), res.getString("usr_lastname"), res.getString("usr_email"), res.getString("usr_phone"), res.getString("usr_password")
+		);
 	}
 	
 	public Integer getId() {
@@ -142,6 +134,6 @@ public class Person {
 	}
 	
 	public String toString() {
-		return this.getId()+";"+this.getFirstname()+";"+this.getLastname()+";"+this.getEmail()+";"+this.getPhone()+";"+this.getPassword();
+		return this.getFirstname()+";"+this.getLastname()+";"+this.getEmail()+";"+this.getPhone()+";"+this.getPassword();
 	}
 }
