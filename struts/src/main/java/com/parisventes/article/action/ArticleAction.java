@@ -21,6 +21,11 @@ public class ArticleAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
+	public String delete() {
+		Articles.delete(this.getId());
+		return SUCCESS;
+	}
+	
 	public Articles getArticleBean() {
 		return articleBean;
 	}

@@ -49,6 +49,10 @@ public class DB {
 		return getStatement().executeQuery(query);
 	}
 	
+	public static Boolean executeDelete(String query) throws SQLException {
+		return (getStatement().executeUpdate(query) > 0);
+	}
+	
 	public static String parseToSql(String str) {
 		return "\"" + str + "\"";
 	}

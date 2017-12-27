@@ -16,40 +16,65 @@
 			</s:if>
 			<s:else>
 				<table id="home-section" class="table table-striped">
-					<tr>
-						<th>Titre</th>
-						<th>Image</th>
-						<th>Description</th>
-						<th>Prix</th>
-					</tr>
-
-					<s:iterator value="articleList">
-						<tr class="article" data-id="<s:property value="id" />">
-							<th>
-								<h3>
-									<s:property value="title" />
-								</h3>
-							</th>
-							<th>
-								<s:set var="articleId" value="id"></s:set> 
-								<s:set var="articleLinkImg" value="linkImg"></s:set>
-								<figure>
-									<a
-										href="<s:url action="article/%{#articleId}" />">
-										<img style="width: 100px; height: 100px"
-										src="<s:url value="img/%{#articleLinkImg}" />"
-										alt="<s:property value="description" />">
-									</a>
-								</figure></th>
-							<th><span class="article-description"><s:property
-										value="description" /></span></th>
-							<th><span class="article-price"><s:property
-										value="price" /> €</span></th>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Titre</th>
+							<th>Image</th>
+							<th>Description</th>
+							<th>Prix</th>
+							<th>Actions</th>
 						</tr>
-					</s:iterator>
+					</thead>					
+					<tbody>
+						<s:iterator value="articleList">
+							<tr class="article" data-id="<s:property value="id" />">
+								<td>
+									<s:property value="id" />
+								</td>
+								<td>
+									<h3>
+										<s:property value="title" />
+									</h3>
+								</td>
+								<td>
+									<s:set var="articleId" value="id"></s:set> 
+									<s:set var="articleLinkImg" value="linkImg"></s:set>
+									<figure>
+										<a
+											href="<s:url action="article/%{#articleId}" />">
+											<img style="width: 100px; height: 100px"
+											src="<s:url value="img/%{#articleLinkImg}" />"
+											alt="<s:property value="description" />">
+										</a>
+									</figure>
+								</td>
+								<td>
+									<span class="article-description">
+										<s:property value="description" />
+									</span>
+								</td>
+								<td>
+									<span class="article-price">
+										<s:property	value="price" /> €
+									</span>
+								</td>
+								<td>
+									<div class="btn-group-vertical">
+										<button type="button" class="btn btn-primary">Modifier</button>
+										<a href="<s:url action="deleteArticle/%{#articleId}" />">
+											<button type="button" class="btn btn-danger">Supprimer</button>
+										</a>
+									</div>
+								</td>
+							</tr>
+						</s:iterator>
+					</tbody>
 				</table>
 			</s:else>
-
+				<a href="<s:url action="addArticleInput" />">
+					Ajouter un article
+				</a>
 		</s:if>
 		<s:else>
 			

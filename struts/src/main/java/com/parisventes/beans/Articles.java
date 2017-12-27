@@ -56,6 +56,14 @@ public class Articles {
     	
     	return null;
 	}
+    
+    public static void delete(Integer id) {
+    	try {
+			DB.executeDelete("DELETE FROM articles WHERE art_id = " + DB.parseToSql(String.valueOf(id)));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
 	
     private void fillFields(ResultSet resultSet) throws SQLException {
     	this.setId(resultSet.getInt("art_id"));
