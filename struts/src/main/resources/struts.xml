@@ -25,6 +25,21 @@
         		<result name="input">/register.jsp</result>
         </action>
         
+        <action name="addArticle" class="com.parisventes.addArticle.action.AddArticleAction" method="execute">
+        	<interceptor-ref name="exception"/>
+            <interceptor-ref name="i18n"/>
+            <interceptor-ref name="fileUpload">
+	       		<param name="allowedTypes">image/jpg,image/jpeg,image/png,image/bmp,image/gif</param>
+	       		<param name="maximumSize">10240</param>
+	  	    </interceptor-ref>
+        	<result name="success" type="redirectAction">index</result>
+        	<result name="input">/addarticle.jsp</result>
+        </action>
+        
+        <action name="addArticleInput" class="com.parisventes.addArticle.action.AddArticleAction" method="input">
+        	<result name="input">/addarticle.jsp</result>
+        </action>
+        
         <action name="login" class="com.parisventes.login.action.LoginAction" method="execute">
         		<result name="success" type="redirectAction">index</result>
         		<result name="input">/login.jsp</result>
@@ -47,6 +62,11 @@
         </action>
 <!--    source : https://cwiki.apache.org/confluence/display/WW/Wildcard+Mappings -->
         
+        <action name="deleteArticle/*" class="com.parisventes.article.action.ArticleAction" method="delete">
+        	<param name="id">{1}</param>
+        	<result name="success" type="redirectAction">index</result>
+        </action>
+        
         <action name="searchUser" class="com.parisventes.searchuser.action.SearchUserAction" method="execute">
         		<result name="success">/searchuser.jsp</result>
         </action>
@@ -54,6 +74,7 @@
         <action name="searchUserInput" class="com.parisventes.searchuser.action.SearchUserAction" method="input">
         		<result name="input">/searchuser.jsp</result>
         </action>
+        
     </package>
 
 </struts>

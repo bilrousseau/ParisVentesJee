@@ -11,12 +11,10 @@ public class Articles {
 	private String description;
 	private Float price;
 	
-	private Articles() {
-		super();
+	public Articles() {
 	}
 
 	public Articles(Integer id, String title, String linkImg, String description, Float price) {
-		this();
 		this.id = id;
 		this.title = title;
 		this.linkImg = linkImg;
@@ -25,9 +23,17 @@ public class Articles {
 	}
 	
 	public static ArrayList<Articles> getAll() {
+		return getAll(true);
+	}
+	
+	public static ArrayList<Articles> getAll(Boolean order) {
 		ArrayList<Articles> articleList = new ArrayList<Articles>();
 		try {
-			ResultSet resultSet = DB.executeSelect("SELECT * FROM articles");
+			String query = "SELECT * FROM articles";
+			ResultSet resultSet = DB.executeSelect(query);
+			if (!order) {
+				query += " ORDER BY art_id DESC;";
+			}
 			
 			while (resultSet.next()) {
 				Articles a = new Articles();
@@ -64,6 +70,21 @@ public class Articles {
 			e.printStackTrace();
 		}
     }
+    
+    public Integer create() {
+		Integer linesInserted = 0;
+		String query = "INSERT INTO articles (art_title, art_link_img, art_description, art_price) VALUES (";
+		query += DB.parseToSql(this.getTitle()) + "," + DB.parseToSql(this.getLinkImg()) + "," + DB.parseToSql(this.getDescription()) + "," + this.getPrice() + ");";
+		
+		try {
+			linesInserted = DB.executeInsert(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return linesInserted;
+
+	}
 	
     private void fillFields(ResultSet resultSet) throws SQLException {
     	this.setId(resultSet.getInt("art_id"));

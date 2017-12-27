@@ -19,12 +19,16 @@ public class AddArticleAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	
 	public String execute() {
+		System.out.println("ARTICLE BEAN : " + this.getArticleBean());
+		System.out.println("FILE UPLOAD : " + this.getFileUpload());
+		this.getArticleBean().create();
 		return SUCCESS;
 	}
 	
 	public Articles getArticleBean() {
-		return articleBean;
+		return this.articleBean;
 	}
+	
 	public void setArticleBean(Articles articleBean) {
 		this.articleBean = articleBean;
 	}
